@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">MVVMRetrofit</string>
+  <string name="app_name">  MVVM</string>
+
+  <string name="error">     An error occurred. Retry later</string>
+  <string name="tab_user">  Users</string>
+  <string name="tab_time">  Timeline</string>
+  <string name="tab_album"> Albums</string>
+  <string name="open_map">  Open in Google Map</string>
+  <string name="comment">   Comment</string>
+  <string name="photos">    Photos</string>
+
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/common_5"
+    android:layout_marginTop="@dimen/common_5">
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_normal"
+        android:padding="@dimen/common_5"
+        android:background="@drawable/rounded_textview"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:gravity="start"/>
+
+</RelativeLayout>

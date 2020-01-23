@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/common_10">
+
+        <ProgressBar
+            android:id="@+id/progressbarComment"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCommentHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:fontFamily="@font/sukhumvitset_bold"
+            android:textColor="#000"
+            android:textSize="@dimen/text_heading" />
+
+        <TextView
+            android:id="@+id/tvCommentDes"
+            android:layout_below="@+id/tvCommentHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="10"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/oddEntry"
+            android:textSize="@dimen/text_normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/viewOne"
+            android:layout_below="@+id/tvCommentDes"
+            android:background="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/tvCommentTitle"
+            android:layout_below="@+id/viewOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="10"
+            android:text="@string/comment"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/viewTwo"
+            android:layout_below="@+id/tvCommentTitle"
+            android:background="@color/colorBlack"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/viewTwo"
+            tools:listitem="@layout/item_comment"
+            android:id="@+id/recyclerComment">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</ScrollView>

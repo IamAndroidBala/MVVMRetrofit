@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/homeViewPager"
+            android:layout_above="@+id/view_main_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorBlack"
+            android:layout_above="@+id/homeTab"
+            android:id="@+id/view_main_tab">
+        </View>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/homeTab"
+            android:background="@color/colorWhite"
+            android:minHeight="?android:attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="0dp"
+            app:tabTextColor="@color/colorBlack"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@style/tabTextStyle"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabMode="fixed"
+            android:fillViewport="false" />
+
+    </RelativeLayout>
 
 </LinearLayout>
