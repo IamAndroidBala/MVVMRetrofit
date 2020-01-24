@@ -1,7 +1,9 @@
 package com.android.bala.mvvmretrofit.ui.photoscreen
 
+import com.android.bala.mvvmretrofit.model.photos.Photos
 import com.android.bala.mvvmretrofit.model.photos.PhotosResult
 import com.android.bala.mvvmretrofit.network.GetPhotos
+import com.android.myretrofit.network.ApiInterface
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -16,32 +18,15 @@ class PhotosPresenter @Inject constructor(private val albums : GetPhotos) : Phot
 
         photoView.displayLoading()
 
-        albums.getData().enqueue(object : Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-
-                photoView.dismissLoading()
-
-                if (response.isSuccessful) {
-                    response.let {
-                        PhotosResult(it).allPhotos?.let {
-                            photoView.displayResult(it)
-                        } ?: run {
-                            photoView.displayError(response.message())
-                        }
-                    }
-                } else {
-                    photoView.displayError(response.message())
-                }
-
+        albums.getData().create(ApiInterface::class.java).getPhotos().enqueue(object : retrofit2.Callback<List<Photos>> {
+            override fun onResponse(call: retrofit2.Call<List<Photos>>, response: retrofit2.Response<List<Photos>>) {
+                photoView.displayResult(response.body()!!)
             }
 
-            override fun onFailure(call: Call, e: IOException) {
-                photoView.displayError(e.message)
+            override fun onFailure(call: retrofit2.Call<List<Photos>>, t: Throwable) {
+                photoView.displayError(t.localizedMessage)
             }
-
         })
-
     }
 
     override fun setPage(photoView: PhotoView) {

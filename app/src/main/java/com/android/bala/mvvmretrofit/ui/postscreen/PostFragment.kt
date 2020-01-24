@@ -20,7 +20,7 @@ class PostFragment : Fragment() , PostView {
     private var postList = ArrayList<Post>()
     private lateinit var postAdapter : PostAdapter
     @Inject lateinit var myActivityPresenter : PostPresenterImpl
-    private var mContext: Context? = null
+    private var mContext : Context? = null
 
     lateinit var recyclerPost : RecyclerView
     lateinit var progressBar  : ProgressBar
@@ -42,12 +42,15 @@ class PostFragment : Fragment() , PostView {
         postAdapter = PostAdapter(postList, activity!!)
         recyclerPost.adapter = postAdapter
 
+        myActivityPresenter.setPage(this)
+        myActivityPresenter.setLoading()
+
         return postView
     }
 
     private fun initViews(view : View) {
 
-        progressBar = view.findViewById(R.id.wait_progress_bar)
+        progressBar  = view.findViewById(R.id.wait_progress_bar)
         recyclerPost = view.findViewById(R.id.recyclerPost)
 
     }
@@ -79,7 +82,7 @@ class PostFragment : Fragment() , PostView {
 
     override fun displayResult(result : List<Post>) {
         this.recyclerPost.post {
-            postAdapter.addPost(result)
+            postAdapter.addPost(result as ArrayList<Post>)
         }
     }
 

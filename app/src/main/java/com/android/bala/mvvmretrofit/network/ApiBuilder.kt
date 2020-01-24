@@ -30,103 +30,59 @@
 
 package com.android.bala.mvvmretrofit.network
 
-import com.android.bala.mvvmretrofit.utils.Const
+import com.android.bala.mvvmretrofit.utils.*
 import okhttp3.Call
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
 import okhttp3.Request
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
-class ApiBuilder @Inject constructor(private val client: OkHttpClient, private val requestBuilder: HttpUrl.Builder?) {
+class ApiBuilder @Inject constructor() {
 
-    fun getHomepage(): Call {
+    fun getPosts(): Retrofit {
 
-        val urlBuilder = requestBuilder
-                ?.addQueryParameter("action", "parse")
-                ?.addQueryParameter("page", "Main Page")
-                ?.addQueryParameter("format", "json")
-
-        return Request.Builder()
-                .url(urlBuilder?.build())
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
+        return Retrofit.Builder()
+            .baseUrl(POST_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     }
 
-    fun getPosts(): Call {
+    fun getAlbums(): Retrofit {
 
-//        val urlBuilder = requestBuilder
-//                ?.addQueryParameter("action", "parse")
-//                ?.addQueryParameter("page", "Main Page")
-//                ?.addQueryParameter("format", "json")
-//
-//        return Request.Builder()
-//                .url(urlBuilder?.build())
-//                .get()
-//                .build()
-//                .let {
-//                    client.newCall(it)
-//                }
-
-        return Request.Builder()
-                .url(Const.POST_URL)
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
+        return Retrofit.Builder()
+            .baseUrl(ALBUM_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     }
 
-    fun getAlbums(): Call {
+    fun getComments(): Retrofit {
 
-        return Request.Builder()
-                .url(Const.ALBUM_URL)
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
+        return Retrofit.Builder()
+            .baseUrl(COMMENT_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     }
 
-    fun getUser(): Call {
+    fun getPhotos() : Retrofit {
 
-        return Request.Builder()
-                .url(Const.USER_URL)
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
+        return Retrofit.Builder()
+            .baseUrl(PHOTOS_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     }
 
-    fun getComments(): Call {
+    fun getUser() : Retrofit {
 
-        return Request.Builder()
-                .url(Const.COMMENT_URL)
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
+        return Retrofit.Builder()
+            .baseUrl(USER_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     }
 
-    fun getPhotos() : Call {
-
-        return Request.Builder()
-                .url(Const.PHOTOS_URL)
-                .get()
-                .build()
-                .let {
-                    client.newCall(it)
-                }
-
-    }
 
 }

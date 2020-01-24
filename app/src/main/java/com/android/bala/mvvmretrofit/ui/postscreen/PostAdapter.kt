@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.bala.mvvmretrofit.R
 import com.android.bala.mvvmretrofit.model.post.Post
 import com.android.bala.mvvmretrofit.ui.commentscreen.CommentsActivity
+import com.android.bala.mvvmretrofit.utils.AppLog
 import kotlinx.android.synthetic.main.item_post.view.*
 
 class PostAdapter (var thisList : ArrayList<Post>, var activity: FragmentActivity) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
@@ -27,7 +28,6 @@ class PostAdapter (var thisList : ArrayList<Post>, var activity: FragmentActivit
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(post: Post) {
-
             itemView.tvPostHeading.text = post.title
             itemView.tvPostBody.text    = post.body
 
@@ -39,7 +39,7 @@ class PostAdapter (var thisList : ArrayList<Post>, var activity: FragmentActivit
     }
 
     fun addPost(newList : List<Post>){
-       thisList.addAll(newList)
+        thisList.addAll(newList)
         notifyDataSetChanged()
     }
 

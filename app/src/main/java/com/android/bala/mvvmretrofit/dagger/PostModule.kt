@@ -40,22 +40,22 @@ class PostModule {
 
   @Provides
   @Singleton
-  fun providePost(api: ApiBuilder)       = GetPosts(api)
+  fun providePost(api       : ApiBuilder)   = GetPosts(api)
 
   @Provides
   @Singleton
-  fun provideAlbumApi(api : ApiBuilder)   = GetAlbums(api)
+  fun provideAlbumApi(api   : ApiBuilder)   = GetAlbums(api)
 
   @Provides
   @Singleton
-  fun provideUsersApi(api : ApiBuilder)   = GetUsers(api)
+  fun provideUsersApi(api   : ApiBuilder)   = GetUsers(api)
 
   @Provides
   @Singleton
-  fun provideCommentApi(api : ApiBuilder) = GetComments(api)
+  fun provideCommentApi(api : ApiBuilder)   = GetComments(api)
 
   @Provides
   @Singleton
-  fun providePhotosApi(api : ApiBuilder)  = GetPhotos(api)
+  fun providePhotosApi(api  : ApiBuilder)   = GetPhotos(api)
 
 }

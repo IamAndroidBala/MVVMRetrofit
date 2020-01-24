@@ -1,11 +1,11 @@
 package com.android.bala.mvvmretrofit.ui.albumscreen
 
-import com.android.bala.mvvmretrofit.model.album.AlbumResult
+import com.android.bala.mvvmretrofit.model.album.Album
 import com.android.bala.mvvmretrofit.network.GetAlbums
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
-import java.io.IOException
+import com.android.myretrofit.network.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -17,28 +17,14 @@ class AlbumPresenter @Inject constructor(private val albums : GetAlbums) : Album
 
         albumView.displayLoading()
 
-        albums.getData().enqueue(object : Callback {
+        albums.getData().create(ApiInterface::class.java).getAlbums().enqueue(object : Callback<List<Album>> {
 
-            override fun onResponse(call: Call, response: Response) {
-
-                albumView.dismissLoading()
-
-                if (response.isSuccessful) {
-                    response.let {
-                        AlbumResult(it).allResult?.let {
-                            albumView.displayResult(it)
-                        } ?: run {
-                            albumView.displayError(response.message())
-                        }
-                    }
-                } else {
-                    albumView.displayError(response.message())
-                }
-
+            override fun onResponse(call: Call<List<Album>>, response: Response<List<Album>>) {
+                albumView.displayResult(response.body()!!)
             }
 
-            override fun onFailure(call: Call, e: IOException) {
-                albumView.displayError(e.message)
+            override fun onFailure(call: Call<List<Album>>, t: Throwable) {
+                albumView.displayError(t.localizedMessage)
             }
 
         })

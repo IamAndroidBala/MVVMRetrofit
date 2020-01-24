@@ -634,6 +634,8 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color kprogresshud_default_color
+color kprogresshud_grey_color
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1036,6 +1038,7 @@ drawable ic_work
 drawable icon_album
 drawable icon_post
 drawable icon_user
+drawable kprogresshud_spinner
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1122,6 +1125,7 @@ id all
 id always
 id async
 id auto
+id background
 id barrier
 id beginning
 id blocking
@@ -1149,6 +1153,7 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id details_label
 id dialog_button
 id dimensions
 id direct
@@ -1187,6 +1192,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id label
 id labeled
 id largeLabel
 id left
@@ -1404,6 +1410,7 @@ layout item_comment
 layout item_photos
 layout item_post
 layout item_user
+layout kprogresshud_hud
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action

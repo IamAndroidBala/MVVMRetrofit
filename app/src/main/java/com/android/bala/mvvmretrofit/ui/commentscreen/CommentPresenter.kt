@@ -1,11 +1,11 @@
 package com.android.bala.mvvmretrofit.ui.commentscreen
 
-import com.android.bala.mvvmretrofit.model.comment.CommentResult
+import com.android.bala.mvvmretrofit.model.comment.Comment
 import com.android.bala.mvvmretrofit.network.GetComments
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
-import java.io.IOException
+import com.android.myretrofit.network.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 class CommentPresenter @Inject constructor(private val comment: GetComments) : CommentPresenterImpl {
@@ -20,33 +20,16 @@ class CommentPresenter @Inject constructor(private val comment: GetComments) : C
 
         commentView.displayLoading()
 
-        comment.getData().enqueue(object : Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-
-                commentView.dismissLoading()
-
-                if (response.isSuccessful) {
-                    response.let {
-                        CommentResult(it).allComment?.let {
-                            commentView.displayResult(it)
-                        } ?: run {
-                            commentView.displayError(response.message())
-                        }
-                    }
-                } else {
-                    commentView.displayError(response.message())
-                }
-
+        comment.getData().create(ApiInterface::class.java).getComments().enqueue(object : Callback<List<Comment>> {
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                commentView.displayResult(response.body()!!)
             }
 
-            override fun onFailure(call: Call, e: IOException) {
-                commentView.displayError(e.message)
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+                commentView.displayError(t.localizedMessage)
             }
-
         })
 
     }
-
 
 }

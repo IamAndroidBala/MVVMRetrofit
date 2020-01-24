@@ -1,11 +1,12 @@
 package com.android.bala.mvvmretrofit.ui.postscreen
 
-import com.android.bala.mvvmretrofit.model.post.PostResult
+import com.android.bala.mvvmretrofit.model.post.Post
 import com.android.bala.mvvmretrofit.network.GetPosts
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
-import java.io.IOException
+import com.android.bala.mvvmretrofit.utils.AppLog
+import com.android.myretrofit.network.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 class PostPresenter @Inject constructor(private val post: GetPosts) : PostPresenterImpl {
@@ -20,33 +21,15 @@ class PostPresenter @Inject constructor(private val post: GetPosts) : PostPresen
 
         postView.displayLoading()
 
-        post.getData().enqueue(object : Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-
-                postView.dismissLoading()
-
-                if (response.isSuccessful) {
-                    response.let {
-                        PostResult(it).allResult?.let {
-                            postView.displayResult(it)
-                        } ?: run {
-                            postView.displayError(response.message())
-                        }
-                    }
-                } else {
-                    postView.displayError(response.message())
-                }
-
+        post.getData().create(ApiInterface::class.java).getPost().enqueue(object : Callback<List<Post>>{
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                postView.displayResult(response.body()!!)
             }
 
-            override fun onFailure(call: Call, e: IOException) {
-                postView.displayError(e.message)
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                postView.displayError(t.localizedMessage)
             }
-
         })
-
     }
-
 
 }

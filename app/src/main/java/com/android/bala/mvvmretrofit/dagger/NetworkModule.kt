@@ -31,7 +31,9 @@
 package com.android.bala.mvvmretrofit.dagger
 
 import com.android.bala.mvvmretrofit.network.ApiBuilder
-import com.android.bala.mvvmretrofit.utils.Const
+import com.android.bala.mvvmretrofit.utils.BASE_URL
+import com.android.bala.mvvmretrofit.utils.LANGUAGE
+import com.android.bala.mvvmretrofit.utils.PROTOCOL
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -49,7 +51,7 @@ class NetworkModule {
 
   @Provides
   @Named(NAME_BASE_URL)
-  fun provideBaseUrlString() = "${Const.PROTOCOL}://${Const.LANGUAGE}.${Const.BASE_URL}"
+  fun provideBaseUrlString() = "${PROTOCOL}://${LANGUAGE}.${BASE_URL}"
 
   @Provides
   @Singleton
@@ -61,6 +63,6 @@ class NetworkModule {
 
   @Provides
   @Singleton
-  fun provideWikiApi(client: OkHttpClient, requestBuilder: HttpUrl.Builder?) = ApiBuilder(client, requestBuilder)
+  fun provideWikiApi() = ApiBuilder()
 
 }

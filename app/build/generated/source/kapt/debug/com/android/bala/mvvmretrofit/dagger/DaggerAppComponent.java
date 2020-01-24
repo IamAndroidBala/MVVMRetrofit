@@ -25,8 +25,6 @@ import dagger.internal.DoubleCheck;
 import dagger.internal.Preconditions;
 import javax.annotation.Generated;
 import javax.inject.Provider;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
 
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -37,12 +35,6 @@ import okhttp3.OkHttpClient;
     "rawtypes"
 })
 public final class DaggerAppComponent implements AppComponent {
-  private Provider<OkHttpClient> provideHttpClientProvider;
-
-  private Provider<String> provideBaseUrlStringProvider;
-
-  private Provider<HttpUrl.Builder> provideRequestBuilderProvider;
-
   private Provider<ApiBuilder> provideWikiApiProvider;
 
   private Provider<GetPosts> providePostProvider;
@@ -82,10 +74,7 @@ public final class DaggerAppComponent implements AppComponent {
   @SuppressWarnings("unchecked")
   private void initialize(final PresenterModule presenterModuleParam,
       final NetworkModule networkModuleParam, final PostModule postModuleParam) {
-    this.provideHttpClientProvider = DoubleCheck.provider(NetworkModule_ProvideHttpClientFactory.create(networkModuleParam));
-    this.provideBaseUrlStringProvider = NetworkModule_ProvideBaseUrlStringFactory.create(networkModuleParam);
-    this.provideRequestBuilderProvider = DoubleCheck.provider(NetworkModule_ProvideRequestBuilderFactory.create(networkModuleParam, provideBaseUrlStringProvider));
-    this.provideWikiApiProvider = DoubleCheck.provider(NetworkModule_ProvideWikiApiFactory.create(networkModuleParam, provideHttpClientProvider, provideRequestBuilderProvider));
+    this.provideWikiApiProvider = DoubleCheck.provider(NetworkModule_ProvideWikiApiFactory.create(networkModuleParam));
     this.providePostProvider = DoubleCheck.provider(PostModule_ProvidePostFactory.create(postModuleParam, provideWikiApiProvider));
     this.provideMyActivityPresenterProvider = DoubleCheck.provider(PresenterModule_ProvideMyActivityPresenterFactory.create(presenterModuleParam, providePostProvider));
     this.provideAlbumApiProvider = DoubleCheck.provider(PostModule_ProvideAlbumApiFactory.create(postModuleParam, provideWikiApiProvider));
