@@ -42,9 +42,6 @@ class PostFragment : Fragment() , PostView {
         postAdapter = PostAdapter(postList, activity!!)
         recyclerPost.adapter = postAdapter
 
-        myActivityPresenter.setPage(this)
-        myActivityPresenter.setLoading()
-
         return postView
     }
 
@@ -59,7 +56,7 @@ class PostFragment : Fragment() , PostView {
         super.onResume()
 
         if(isVirgin) {
-            isVirgin = true
+            isVirgin = false
             myActivityPresenter.setPage(this)
             myActivityPresenter.setLoading()
         }

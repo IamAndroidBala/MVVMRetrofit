@@ -43,6 +43,8 @@ class HomeActivity : AppCompatActivity() {
 
         })
 
+        homeViewPager.offscreenPageLimit = 3
+
     }
 
     private fun setHeading(position : Int) {
