@@ -13,8 +13,8 @@ class PostPresenter @Inject constructor(private val post: GetPosts) : PostPresen
 
     private lateinit var postView: PostView
 
-    override fun setPage(myActivityView: PostView) {
-        this.postView = myActivityView
+    override fun setPage(mPostView: PostView) {
+        this.postView = mPostView
     }
 
     override fun setLoading() {
