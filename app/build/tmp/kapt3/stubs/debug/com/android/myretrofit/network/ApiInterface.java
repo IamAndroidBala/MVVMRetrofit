@@ -6,22 +6,22 @@ import java.lang.System;
 public abstract interface ApiInterface {
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "https://jsonplaceholder.typicode.com/photos/")
+    @retrofit2.http.GET(value = "photos/")
     public abstract retrofit2.Call<java.util.List<com.android.bala.mvvmretrofit.model.photos.Photos>> getPhotos();
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "https://jsonplaceholder.typicode.com/albums/")
+    @retrofit2.http.GET(value = "albums/")
     public abstract retrofit2.Call<java.util.List<com.android.bala.mvvmretrofit.model.album.Album>> getAlbums();
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "https://jsonplaceholder.typicode.com/users/")
+    @retrofit2.http.GET(value = "users/")
     public abstract retrofit2.Call<java.util.List<com.android.bala.mvvmretrofit.model.user.User>> getUsers();
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "https://jsonplaceholder.typicode.com/posts/")
+    @retrofit2.http.GET(value = "posts/")
     public abstract retrofit2.Call<java.util.List<com.android.bala.mvvmretrofit.model.post.Post>> getPost();
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "https://jsonplaceholder.typicode.com/posts/1/comments/")
+    @retrofit2.http.GET(value = "posts/1/comments/")
     public abstract retrofit2.Call<java.util.List<com.android.bala.mvvmretrofit.model.comment.Comment>> getComments();
 }
