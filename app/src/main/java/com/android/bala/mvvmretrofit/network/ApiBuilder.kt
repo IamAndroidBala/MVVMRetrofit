@@ -42,7 +42,7 @@ class ApiBuilder @Inject constructor() {
     fun getPosts(): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(POST_URL)
+            .baseUrl(BASE_URL1)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -51,7 +51,7 @@ class ApiBuilder @Inject constructor() {
     fun getAlbums(): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(ALBUM_URL)
+            .baseUrl(BASE_URL1)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -60,7 +60,7 @@ class ApiBuilder @Inject constructor() {
     fun getComments(): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(COMMENT_URL)
+            .baseUrl(BASE_URL1)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -69,7 +69,7 @@ class ApiBuilder @Inject constructor() {
     fun getPhotos() : Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(PHOTOS_URL)
+            .baseUrl(BASE_URL1)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -78,7 +78,7 @@ class ApiBuilder @Inject constructor() {
     fun getUser() : Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(USER_URL)
+            .baseUrl(BASE_URL1)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
